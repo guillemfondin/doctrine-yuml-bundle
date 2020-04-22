@@ -3,7 +3,9 @@
 namespace Onurb\Bundle\YumlBundle\Controller;
 
 use Onurb\Bundle\YumlBundle\Yuml\YumlClient;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Utility to generate Yuml compatible strings from metadata graphs
@@ -14,10 +16,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
  * @author  Bruno Heron <herobrun@gmail.com>
  * @author  Marco Pivetta <ocramius@gmail.com>
  */
-class YumlController extends Controller
+class YumlController extends AbstractController
 {
     /**
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @return RedirectResponse|Response
      */
     public function indexAction()
     {
@@ -32,14 +34,22 @@ class YumlController extends Controller
         $directionParam     = $this->container->getParameter('onurb_yuml.direction');
         $scale              = $this->container->getParameter('onurb_yuml.scale');
 
-        return $this->redirect(
-            $yumlClient->getGraphUrl(
-                $yumlClient->makeDslText($showDetailParam, $colorsParam, $notesParam),
-                $styleParam,
-                $extensionParam,
-                $directionParam,
-                $scale
-            )
-        );
+        if ($extensionParam === 'html') {
+            $data = $yumlClient->makeDslText($showDetailParam, $colorsParam, $notesParam);
+
+            return $this->render('@OnurbYuml/index.html.twig', [
+                'data' => $data
+            ]);
+        } else {
+            return $this->redirect(
+                $yumlClient->getGraphUrl(
+                    $yumlClient->makeDslText($showDetailParam, $colorsParam, $notesParam),
+                    $styleParam,
+                    $extensionParam,
+                    $directionParam,
+                    $scale
+                )
+            );
+        }
     }
 }

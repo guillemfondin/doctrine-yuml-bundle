@@ -1,6 +1,7 @@
 <?php
 namespace OnurbTest\Bundle\YumlBundle\Curl;
 
+use Exception;
 use Onurb\Bundle\YumlBundle\Curl\Curl;
 use PHPUnit\Framework\TestCase;
 
@@ -23,10 +24,10 @@ class CurlTest extends TestCase
 
     /**
      * @covers \Onurb\Bundle\YumlBundle\Curl\Curl
-     * @expectedException \Exception
      */
     public function testResponseWithWrongUrl()
     {
+        $this->expectException(Exception::class);
         $testUrl = 'http://localhost.test/url_that_doesnt_exists';
         $curl = new Curl($testUrl);
 
@@ -47,6 +48,7 @@ class CurlTest extends TestCase
 
     /**
      * @covers \Onurb\Bundle\YumlBundle\Curl\Curl
+     * @throws Exception
      */
     public function testResponseWithPostData()
     {
@@ -59,7 +61,7 @@ class CurlTest extends TestCase
         $curl->setPosts($posts);
         $response = $curl->getResponse();
 
-        $this->assertSame('15a98c92.png', $response);
+        $this->assertSame('15a98c92.svg', $response);
     }
 
     /**

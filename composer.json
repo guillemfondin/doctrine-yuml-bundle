@@ -42,7 +42,8 @@
       "php":                            ">=7.0",
       "squizlabs/php_codesniffer":      "~2",
       "doctrine/doctrine-bundle":       "^1.5",
-      "phpunit/phpunit":                "~6.5"
+      "phpunit/phpunit":                "~6.5",
+      "ext-curl":                       "*"
     },
     "autoload": {
       "psr-4":    { "Onurb\\Bundle\\YumlBundle\\":"lib/Onurb/Bundle/YumlBundle/" }

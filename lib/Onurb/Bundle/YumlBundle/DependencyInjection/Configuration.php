@@ -41,7 +41,7 @@ class Configuration implements ConfigurationInterface
                     ->end()
                 ->end()
                 ->enumNode('yuml_extension')
-                    ->values(array('png', 'jpg', 'svg', 'pdf', 'json'))
+                    ->values(array('png', 'jpg', 'svg', 'pdf', 'json', 'html'))
                     ->defaultValue('png')
                 ->end()
                 ->enumNode('yuml_style')
