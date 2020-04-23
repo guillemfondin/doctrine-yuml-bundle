@@ -7,7 +7,7 @@
         convertWarningsToExceptions="true"
         verbose="true"
         stopOnFailure="false"
-        syntaxCheck="true" >
+>
     <testsuite name="Yuml Bundle tests">
         <directory suffix="Test.php">./tests/OnurbTest/</directory>
     </testsuite>

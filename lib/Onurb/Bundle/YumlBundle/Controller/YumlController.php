@@ -2,9 +2,10 @@
 
 namespace Onurb\Bundle\YumlBundle\Controller;
 
+use Onurb\Bundle\YumlBundle\Format\Normalizers\DslNormalizer;
+use Onurb\Bundle\YumlBundle\Format\Parsers\HtmlParser;
 use Onurb\Bundle\YumlBundle\Yuml\YumlClient;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
@@ -19,7 +20,7 @@ use Symfony\Component\HttpFoundation\Response;
 class YumlController extends AbstractController
 {
     /**
-     * @return RedirectResponse|Response
+     * @return Response
      */
     public function indexAction()
     {
@@ -35,10 +36,14 @@ class YumlController extends AbstractController
         $scale              = $this->container->getParameter('onurb_yuml.scale');
 
         if ($extensionParam === 'html') {
-            $data = $yumlClient->makeDslText($showDetailParam, $colorsParam, $notesParam);
+            $dsl = $yumlClient->makeDslText($showDetailParam, $colorsParam, $notesParam);
+
+            $entities = DslNormalizer::normalize($dsl);
+            $html = HtmlParser::parse($entities);
 
             return $this->render('@OnurbYuml/index.html.twig', [
-                'data' => $data
+                'data' => $dsl,
+                'html' => $html
             ]);
         } else {
             return $this->redirect(

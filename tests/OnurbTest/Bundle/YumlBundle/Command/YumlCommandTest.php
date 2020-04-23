@@ -31,7 +31,7 @@ class YumlCommandTest extends TestCase
      */
     private $commandTester;
 
-    public function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -86,7 +86,7 @@ class YumlCommandTest extends TestCase
             'command'   => $this->command->getName()
         ));
 
-        $this->assertRegExp('/.../', $this->commandTester->getDisplay());
+        $this->assertMatchesRegularExpression('/.../', $this->commandTester->getDisplay());
         $this->assertSame('Downloaded', explode(' ', $this->commandTester->getDisplay())[0]);
     }
 }

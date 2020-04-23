@@ -5,7 +5,7 @@ namespace OnurbTest\Bundle\YumlBundle\Controller;
 use Onurb\Bundle\YumlBundle\Controller\YumlController;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\Response;
 
 class YumlControllerTest extends TestCase
 {
@@ -69,7 +69,7 @@ class YumlControllerTest extends TestCase
 
         $response = $controller->indexAction();
 
-        $this->assertTrue($response instanceof RedirectResponse);
+        $this->assertTrue($response instanceof Response);
     }
 
     protected function createController()

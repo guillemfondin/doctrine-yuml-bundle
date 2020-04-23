@@ -1,5 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    {{ data }}
+    <div>
+        {{ html | raw }}
+    </div>
 {% endblock %}

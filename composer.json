@@ -36,17 +36,17 @@
         "symfony/http-foundation":          "~3.0|~4.0",
         "symfony/http-kernel":              "~3.0|~4.0",
         "symfony/profiler-pack":            "~1.0",
-        "symfony/routing":                  "~3.0|~4.0"
+        "symfony/routing":                  "~3.0|~4.0",
+        "symfony/yaml": "^5.1@dev"
     },
     "require-dev": {
-      "php":                            ">=7.0",
-      "squizlabs/php_codesniffer":      "~2",
-      "doctrine/doctrine-bundle":       "^1.5",
-      "phpunit/phpunit":                "~6.5",
-      "ext-curl":                       "*"
+        "php":                            ">=7.0",
+        "doctrine/doctrine-bundle":       "^1.5",
+        "phpunit/phpunit":                "^9.1",
+        "ext-curl":                       "*"
     },
     "autoload": {
-      "psr-4":    { "Onurb\\Bundle\\YumlBundle\\":"lib/Onurb/Bundle/YumlBundle/" }
+        "psr-4":    { "Onurb\\Bundle\\YumlBundle\\":"lib/Onurb/Bundle/YumlBundle/" }
     },
     "extra": {
         "symfony": {
