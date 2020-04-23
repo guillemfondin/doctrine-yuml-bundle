@@ -19,11 +19,11 @@ class HtmlParserTest extends TestCase
         $data = DslNormalizer::normalize($dsl);
 
         $expected = "<ul class='bg-red '>";
-            $expected .= "<li style=\"white-space: pre;\">Simple.Entity</li>";
+            $expected .= "<li>Simple.Entity</li>";
             $expected .= "<ul>";
-                $expected .= "<li style=\"white-space: pre;\">+a</li>";
-                $expected .= "<li style=\"white-space: pre;\">b</li>";
-                $expected .= "<li style=\"white-space: pre;\">c</li>";
+                $expected .= "<li>+a</li>";
+                $expected .= "<li>b</li>";
+                $expected .= "<li>c</li>";
             $expected .= "</ul>";
         $expected .= "</ul>";
 

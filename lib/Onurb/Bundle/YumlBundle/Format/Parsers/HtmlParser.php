@@ -14,7 +14,7 @@ class HtmlParser implements ParserInterface
             $attr = CssClassParser::parse($props);
 
             $html .= "<ul $attr>";
-            $html .= "<li style=\"white-space: pre;\">$className</li>";
+            $html .= "<li>".htmlspecialchars($className)."</li>";
             $html .= "<ul>";
 
             foreach ($props as $prop) {
@@ -22,7 +22,7 @@ class HtmlParser implements ParserInterface
                     continue;
                 }
 
-                $html .= "<li style=\"white-space: pre;\">$prop</li>";
+                $html .= "<li>".htmlspecialchars($prop)."</li>";
             }
 
             $html .= "</ul>";
